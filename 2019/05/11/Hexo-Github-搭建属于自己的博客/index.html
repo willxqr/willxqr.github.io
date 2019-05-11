@@ -101,8 +101,19 @@
 <p>2 然后创建一个新项目，比如：<br>固定格式：willxqr.github.io</p>
 <p>3 点击设置，创建一个page，选择一个主题，不过没什么用，反正马上就被覆盖掉了，这个时候访问一下链接，应该可以看到效果</p>
 <p>4 安装git插件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<p>5 git的配置，修改_config.yml文件:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/willxqr/willxqr.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
-<p>6 当然，只是这样肯定不行，你要确保你本地能git push到服务端，所以需要配置本地的ssh github私钥。没有操作过的同学，请自行搜索。 这样，我就可以将本地的文章通过hexo官方推荐的方式push到github：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
+<p>5 git的配置，修改_config.yml文件，使用SSH（非HTTPS）:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:willxqr/willxqr.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
+<p>6 当然，只是这样肯定不行，你要确保你本地能git push到服务端，所以需要配置本地的ssh github私钥。</p>
+<ul>
+<li><p>本地生成公钥私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"willxqr@qq.com"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加公钥到 Github<br>根据上一步的提示，找到公钥文件（默认为id_rsa.pub），用记事本打开，全选并复制。<br>登录 Github，右上角 头像 -&gt; Settings —&gt; SSH keys —&gt; Add SSH key。把公钥粘贴到key中，填好title并点击 Add key。</p>
+</li>
+<li>配置完成后输入命令进行测试<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>等待片刻可看到成功提示。</p>
+<p>7 将本地的文章通过hexo官方推荐的方式push到github：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
 <p>这样应该就能在你的github上看到上传的代码了，这时看到的应该是纯静态的一个站点。<br>既然代码已经上传了，那么只要在我的服务器配置好github和ssh私钥，就能顺利的pull代码了，当然，还需要写个crontab定时来拉取，不需要自己登录服务器操作了。</p>
 <h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="执行deploy命令了，但是代码未上传？"><a href="#执行deploy命令了，但是代码未上传？" class="headerlink" title="执行deploy命令了，但是代码未上传？"></a>执行deploy命令了，但是代码未上传？</h4><p>先执行<code>hexo generate</code>命令，生成静态文件了，再执行<code>hexo deploy</code>上传，上传是只会上传public中生成的文件。</p>
 <h4 id="修改了模板，但是没有生效？"><a href="#修改了模板，但是没有生效？" class="headerlink" title="修改了模板，但是没有生效？"></a>修改了模板，但是没有生效？</h4><p>修改了模板以后不生效，建议先<code>hexo clean</code>，然后再<code>hexo generate</code>。只执行hexo generate，可能模板后者静态文件不会被替换。</p>
