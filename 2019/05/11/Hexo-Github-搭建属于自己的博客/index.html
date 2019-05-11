@@ -98,11 +98,11 @@
 <p>主题将自动为这个页面显示所有标签。</p>
 <h4 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 头部菜单，title: link</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">  Categories:</span> <span class="string">/Categories</span></span><br><span class="line"><span class="attr">  Tags:</span> <span class="string">/Tags</span></span><br><span class="line"><span class="attr">  Github:</span> <span class="attr">https://github.com/willxqr</span></span><br></pre></td></tr></table></figure>
 <h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><p>现在比较流行的方式，都是将代码发布到git，因为我同时要传到github和自己的博客，所有我的处理方式就是：先将代码传到github，再在自己的服务器获取github代码，服务器上自己部署一个nginx，解析静态网页即可。<br>1 首先注册github账号，比如willxqr<br><a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
-<p>2 然后创建一个新项目，比如：<br>固定格式：willxqr.github.io</p>
+<p>2 然后创建一个新项目：<br>固定格式：willxqr.github.io</p>
 <p>3 点击设置，创建一个page，选择一个主题，不过没什么用，反正马上就被覆盖掉了，这个时候访问一下链接，应该可以看到效果</p>
 <p>4 安装git插件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>5 git的配置，修改_config.yml文件，使用SSH（非HTTPS）:<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:willxqr/willxqr.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
-<p>6 当然，只是这样肯定不行，你要确保你本地能git push到服务端，所以需要配置本地的ssh github私钥。</p>
+<p>6 配置本地的ssh github私钥</p>
 <ul>
 <li><p>本地生成公钥私钥</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"willxqr@qq.com"</span></span><br></pre></td></tr></table></figure>
