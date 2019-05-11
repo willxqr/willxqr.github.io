@@ -92,11 +92,12 @@
 <p>#copy the debian-sys-maint’s password   qYRxQGXwfxUqmFju  ecoMJDqprvSgPh0X</p>
 <p>mysql -u debian-sys-maint -p</p>
 <p>use mysql;<br>update user set authentication_string=password(‘Pwd@1234’) where user=’root’;<br>update user set plugin=”mysql_native_password”;<br>flush privileges;<br>quit;</p>
+<p>zblogPhp主题模板的编译文件不存在解决方法<br>  出现这种情况也是因为权限问题，是/zb_users/cache/目录没有写入权限，我们修改权限为777才行，766也不行。<br>然后再点击后台的清空缓存并重新编译模板这个按钮，重新生成，这个时候cache目录下面会生成一个compiled目录，这样就好了。 </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/11/test/" data-id="cjvj4pe3y0001lf71lok374zv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/11/test/" data-id="cjvj5onht0001w771ordgq38l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -143,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/11/hello-world/" data-id="cjvj4pe3r0000lf71iuxxa6pm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/11/hello-world/" data-id="cjvj5onhk0000w771x8qzb7j1" class="article-share-link">Share</a>
       
       
     </footer>
